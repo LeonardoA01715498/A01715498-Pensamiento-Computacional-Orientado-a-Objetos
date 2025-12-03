@@ -4,6 +4,7 @@ El programa estará diseñado para realizar las siguientes tareas principales:
 Creación de Objetos: Crear diferentes objetos que representen cada tipo de material (un Libro, una revista, etc...), inicializándolos con sus respectivos atributos (título, autor, ISBN, etc...).
 Consulta de Detalles: Permitir consultar los detalles específicos de cada objeto, como el titulo, el autor, o si esta disponible para ser prestado.
 Gestión de Préstamo (Simulada): Simular las acciones que se realizan con el material, como marcar un ítem como prestado, devuelto o no prestado.
+El programa corre para Windows 11 con el archivo .exe
 
 Ejecucion:
 
