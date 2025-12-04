@@ -9,7 +9,7 @@ El programa corre para Windows 11 con el archivo .exe
 Ejecucion:
 
 #Crear .exe/.o
-g++ biblioteca.cpp -o biblioteca.exe (crear .exe)
+g++ biblioteca.cpp -o biblioteca.exe (crear .exe) (Para Windows)
 g++ biblioteca.cpp -o biblioteca.o (crear.o)
 
 #Correr programa
