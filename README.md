@@ -10,11 +10,11 @@ Ejecucion:
 
 #Crear .exe/.o
 g++ biblioteca.cpp -o biblioteca.exe (crear .exe) (Para Windows)
-g++ biblioteca.cpp -o biblioteca.o (crear.o)
+g++ biblioteca.cpp -o biblioteca.o (crear.o) (Linux/Mac)
 
 #Correr programa
-.\biblioteca.exe
-.\biblioteca.o
+.\biblioteca.exe (Windows)
+./biblioteca.o (Linux/Mac)
 
 Resultado
 
