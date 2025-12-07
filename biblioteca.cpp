@@ -4,20 +4,22 @@
 #include <memory>
 using namespace std;
 
+// Clase base abstracta para materiales de biblioteca
 class MaterialBiblioteca {
 protected:
     string titulo;
     int id;
     bool prestado;
-    static int contadorID;
+    static int contadorID; // Contador estático para generar IDs únicos
 
 public:
     MaterialBiblioteca(string t) : titulo(t), prestado(false) {
-        id = ++contadorID;
+        id = ++contadorID; // Asigna ID automáticamente al crear material
     }
 
     virtual ~MaterialBiblioteca() {}
 
+    // Métodos virtuales puros para polimorfismo
     virtual void mostrarInfo() const = 0;
     virtual string getTipo() const = 0;
 
@@ -44,8 +46,10 @@ public:
     bool estaPrestado() const { return prestado; }
 };
 
+// Inicialización del contador estático
 int MaterialBiblioteca::contadorID = 0;
 
+// Clases derivadas: Libro, Revista y DVD
 class Libro : public MaterialBiblioteca {
 private:
     string autor;
@@ -127,17 +131,18 @@ public:
     string getGenero() const { return genero; }
 };
 
-
+// Clase que gestiona la colección de materiales (composición)
 class Biblioteca {
 private:
     string nombre;
-    vector<unique_ptr<MaterialBiblioteca>> catalogo;
+    vector<unique_ptr<MaterialBiblioteca>> catalogo; // Composición: la biblioteca posee los materiales
 
 public:
     Biblioteca(string n) : nombre(n) {
         cout << "\nBiblioteca " << nombre << " creada" << endl;
     }
 
+    // Destructor libera automáticamente memoria con unique_ptr
     ~Biblioteca() {
         cout << "\nBiblioteca " << nombre << " cerrada" << endl;
         cout << "Liberando " << catalogo.size() << " materiales del catalogo" << endl;
@@ -162,11 +167,13 @@ public:
         cout << "\nCATALOGO DE " << nombre << endl;
         cout << "Total de materiales: " << catalogo.size() << endl;
         
+        // Recorre e imprime información de cada material usando polimorfismo
         for (const auto& material : catalogo) {
             material->mostrarInfo();
         }
     }
 
+    // Busca un material por su ID y retorna un puntero al mismo
     MaterialBiblioteca* buscarPorID(int id) {
         for (auto& material : catalogo) {
             if (material->getID() == id) {
@@ -196,6 +203,7 @@ public:
         }
     }
 
+    // Muestra resumen con estadísticas de disponibilidad
     void mostrarResumen() const {
         cout << "\nRESUMEN " << nombre << endl;
         
@@ -224,6 +232,7 @@ int main() {
 
     Biblioteca miBiblioteca("Biblioteca Central");
 
+    // Agregar materiales de diferentes tipos
     cout << "\nAGREGANDO MATERIALES" << endl;
     miBiblioteca.agregarLibro("Cien Anios de Soledad", "Gabriel Garcia Marquez", 
                                "978-0307474728", 417, "Realismo Magico");
@@ -239,7 +248,7 @@ int main() {
     cout << "\nOPERACIONES DE PRESTAMO" << endl;
     miBiblioteca.prestarMaterial(1);
     miBiblioteca.prestarMaterial(3);
-    miBiblioteca.prestarMaterial(1);
+    miBiblioteca.prestarMaterial(1); // Intento de prestar material ya prestado
 
     miBiblioteca.mostrarResumen();
 
